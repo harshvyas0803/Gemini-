@@ -178,7 +178,20 @@ a {
   width: 60px;
   height: 34px;
 }
-
+.sidebar {
+  position: fixed; /* Fixed positioning */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 60px; /* Adjust height as needed */
+  background-color: #f9f9f9; /* Example background color */
+  z-index: 1000; /* Ensure it's on top of other elements */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px; /* Add padding for content inside the navbar */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for better separation */
+}
 .switch input {
   opacity: 0;
   width: 0;
@@ -356,6 +369,7 @@ body.dark .bottom-item:hover {
 }
 @media (max-width: 600px) {
   .sidebar {
+    overflow-x: auto;
     width: 60px; /* Sidebar starts in collapsed state */
   }
 
@@ -391,3 +405,4 @@ body.dark .bottom-item:hover {
 .sidebar.collapsed {
   width: 8%; /* Min width when collapsed */
 }
+ 

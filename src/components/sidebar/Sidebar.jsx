@@ -28,6 +28,7 @@ const Sidebar = () => {
     document.body.classList.toggle('dark', !isDarkMode);
   };
 
+  
   return (
     <div className={`sidebar ${extended ? 'expanded' : 'collapsed'} ${isDarkMode ? 'dark' : 'light'}`}>
       <div className="top">

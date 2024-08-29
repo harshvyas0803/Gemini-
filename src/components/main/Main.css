@@ -1,6 +1,9 @@
+ 
+
+
 .main{ 
     flex: 1;
-    min-height: 100vh;
+    min-height: 100vh;z-index: 1; 
     padding-bottom: 15vh;
     position: relative;
 }
@@ -155,7 +158,6 @@ font-weight: 300;
 line-height: 1.8;
 }
 @media (max-width:600px){
-
 .main-bottom input{
 
 flex: none;
@@ -173,3 +175,8 @@ width: 150px;
 }
 }
 
+.main{
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent wrapping of child elements */
+  
+}
