@@ -4,7 +4,7 @@ import { assets } from '../../assets/assets';
 import { Context } from '../../context/Context';
 
 const Sidebar = () => {
-  const [extended, setExtended] = useState(true);
+  const [extended, setExtended] = useState(false); // Default collapsed
   const [isDarkMode, setIsDarkMode] = useState(false); // State for dark mode
   const { onSent, prevPrompts, setRecentPrompt, newChat } = useContext(Context);
 
@@ -13,27 +13,39 @@ const Sidebar = () => {
     setRecentPrompt(prompt);
     onSent(prompt);
   };
-
+  document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.querySelector('.sidebar');
+    const menuButton = document.querySelector('.sidebar .menu img');
+  
+    menuButton.addEventListener('click', function() {
+      sidebar.classList.toggle('expanded');
+    });
+  });
+  
   // Function to handle theme toggle
   const handleThemeToggle = () => {
-    setIsDarkMode(prevMode => !prevMode);
+    setIsDarkMode((prevMode) => !prevMode);
     document.body.classList.toggle('dark', !isDarkMode);
   };
 
   return (
     <div className={`sidebar ${extended ? 'expanded' : 'collapsed'} ${isDarkMode ? 'dark' : 'light'}`}>
       <div className="top">
+        {/* Menu Icon for expanding/collapsing sidebar */}
         <img
-          onClick={() => setExtended(prev => !prev)}
+          onClick={() => setExtended((prev) => !prev)}
           className='menu'
           src={assets.menu_icon}
           alt="Menu"
         />
+        
+        {/* New Chat Button */}
         <div onClick={newChat} className="new-chat">
           <img src={assets.plus_icon} alt="New Chat" />
           {extended && <p>New Chat</p>}
         </div>
 
+        {/* Recent Prompts */}
         {extended && (
           <div className="recent">
             <p className="recent-title">Recent</p>
@@ -51,7 +63,9 @@ const Sidebar = () => {
         )}
       </div>
 
+      {/* Bottom Section: Dark Mode Toggle and Links */}
       <div className="bottom">
+        {/* Dark Mode Toggle */}
         <div className="bottom-item recent-entry">
           <span>Dark Mode</span>
           <label className="switch">
@@ -64,6 +78,7 @@ const Sidebar = () => {
           </label>
         </div>
 
+        {/* About Link */}
         <div className="bottom-item recent-entry">
           <a href="https://blog.google/technology/ai/google-gemini-ai/" target="_blank" rel="noopener noreferrer">
             <img src={assets.question_icon} alt="Help" /> 
@@ -71,6 +86,7 @@ const Sidebar = () => {
           </a>
         </div>
 
+        {/* Activity Section */}
         <div className="bottom-item recent-entry">
           <img src={assets.history_icon} alt="Activity" />
           {extended && <p>Activity</p>}

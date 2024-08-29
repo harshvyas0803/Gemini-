@@ -54,9 +54,11 @@
   display: block;
   margin-bottom: 20px;
   cursor: pointer;
+  width: 2px;
 }
 
 .sidebar .new-chat {
+  
   margin-top: 30px;
   display: flex;
   align-items: center;
@@ -69,7 +71,11 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+.top.menu{
 
+width: 2vw;
+
+}
 .sidebar .new-chat:hover {
   background-color: var(--new-chat-bg-hover);
 }
@@ -119,11 +125,7 @@
 }
 
 /* Media Queries for Small Screens */
-@media (max-width: 550px) {
-  .sidebar {
-    display: none; /* Hide sidebar below 550px */
-  }
-}
+
 
 @media (max-width: 600px) and (min-width: 551px) {
   .sidebar.expanded {
@@ -237,4 +239,155 @@ body.dark .bottom-item {
 
 body.dark .bottom-item:hover {
   color: rgba(128, 128, 128, 0.416);
+}
+/* Sidebar Expanded State */
+.sidebar.expanded {
+  width: 250px;
+  padding: 25px 15px;
+  transition: width 0.3s ease, padding 0.3s ease;
+}
+/* Default Collapsed State */
+.sidebar {
+  width: 80px; /* Collapsed width */
+  padding: 25px 10px;
+}
+.sidebar.collapsed .new-chat p,
+.sidebar.collapsed .recent-title,
+.sidebar.collapsed .recent-entry p,
+.sidebar.collapsed .bottom-item p {
+  display: none;
+}
+
+.sidebar.collapsed .new-chat,
+.sidebar.collapsed .recent-entry,
+.sidebar.collapsed .bottom-item {
+  justify-content: center;
+}
+/* Media Queries for Small Screens */
+
+@media (max-width: 600px) {
+  .sidebar {
+    position: fixed; /* Make sidebar fixed for mobile */
+    left: 0;
+    top: 0;
+    height: 100vh;
+    z-index: 1000; /* Make sure sidebar is above other content */
+    width: 60px; /* Start collapsed */
+    transition: width 0.3s ease, padding 0.3s ease;
+    overflow-y: auto; /* Enable vertical scroll if needed */
+  }
+
+  .sidebar.expanded {
+    width: 250px; /* Max width when expanded */
+  }
+
+  .sidebar img {
+    width: 18px;
+  }
+
+  /* Collapse/Expand Behavior */
+  .sidebar.collapsed {
+    width: 60px; /* Min width when collapsed */
+  }
+
+  .sidebar.collapsed .new-chat p,
+  .sidebar.collapsed .recent-title,
+  .sidebar.collapsed .recent-entry p,
+  .sidebar.collapsed .bottom-item p {
+    display: none; /* Hide text when collapsed */
+  }
+
+  .sidebar.collapsed .new-chat,
+  .sidebar.collapsed .recent-entry,
+  .sidebar.collapsed .bottom-item {
+    justify-content: center; /* Center icons when collapsed */
+  }
+
+  .sidebar .menu {
+    margin-bottom: 20px;
+    cursor: pointer;
+    width: 20%; /* Make it easier to click */
+  }
+}
+
+@media (min-width: 500px) {
+  .sidebar {
+    width: 25px; /* Default expanded width for larger screens */
+    position: relative; /* Normal position */
+    overflow: hidden; /* Prevent overflow */
+  }
+
+  .sidebar.collapsed {
+    width: 8%; /* Min width when collapsed */
+  }
+  
+}
+
+/* Updated Sidebar Toggle Button */
+.sidebar .menu {
+  display: block;
+  margin-bottom: 20px;
+  cursor: pointer;
+  width: 100%; /* Make it easier to click */
+}
+/* Menu Image Styles */
+.sidebar .menu img {
+  width: 18px; /* Set a fixed width */
+  height: 18px; /* Set a fixed height */
+  display: block; /* Prevent any inline styling issues */
+  transition: none; /* Remove any scaling transitions */
+  pointer-events: none; /* Prevent the image itself from triggering any hover or click effects */
+}
+
+/* Prevent Click and Hover Effects on Menu */
+.sidebar .menu {
+  display: block;
+  margin-bottom: 20px;
+  cursor: pointer;
+  width: 5vw; /* Make it easier to click */
+  user-select: none; /* Prevent text selection */
+  transition: none; /* Remove any scaling transitions */
+}
+
+/* Remove scaling when clicking */
+.sidebar .menu:active,
+.sidebar .menu:focus {
+  transform: none; /* Ensure no scaling is applied */
+}
+@media (max-width: 600px) {
+  .sidebar {
+    width: 60px; /* Sidebar starts in collapsed state */
+  }
+
+  /* Hide all content except the .menu on mobile */
+  .sidebar .new-chat,
+  .sidebar .recent,
+  .sidebar .bottom,
+  .sidebar .recent-title,
+  .sidebar .recent-entry,
+  .sidebar .bottom-item {
+    display: none;
+  }
+
+  /* Only show the .menu image */
+  .sidebar .menu img {
+    display: block; /* Show the menu image */
+    cursor: pointer; /* Cursor indicates clickable */
+  }
+
+  /* Show content when expanded */
+  .sidebar.expanded .new-chat,
+  .sidebar.expanded .recent,
+  .sidebar.expanded .bottom {
+    display: flex; /* Restore display on expanded */
+  }
+
+  .sidebar.expanded .recent-title,
+  .sidebar.expanded .recent-entry,
+  .sidebar.expanded .bottom-item {
+    display: flex; /* Restore display on expanded */
+  }
+}
+.sidebar.collapsed {
+  width: 8%; /* Min width when collapsed */
 }
