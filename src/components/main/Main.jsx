@@ -24,11 +24,18 @@ const Main = () => {
     });
   };
 
-  
   const handleSubmit = () => {
     if (input.trim()) {
       onSent(input);
-     }
+      setInput(''); // Clear the input after submission
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent default behavior if needed
+      handleSubmit();
+    }
   };
 
   return (
@@ -45,7 +52,7 @@ const Main = () => {
               <p><span>Hello...</span></p>
               <p>How can I help you today</p>
             </div>
-
+            <span>Example:</span>
             <div className="cards">
               <div className="card">
                 <p>Suggest beautiful places</p>
@@ -95,6 +102,7 @@ const Main = () => {
               type="text" 
               placeholder='Enter Prompt' 
               aria-label="Enter prompt" 
+              onKeyDown={handleKeyDown} // Attach the key down event handler
             />
             <div>
               <img 
@@ -127,3 +135,4 @@ const Main = () => {
 };
 
 export default Main;
+

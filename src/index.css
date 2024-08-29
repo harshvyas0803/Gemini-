@@ -10,6 +10,45 @@
   display: flex;
   animation: fadeIn 1.5s;
  }
+ :root {
+    /* Color Variables */
+    --sidebar-bg-light: #f9f9f9;
+    --sidebar-bg-dark: #1f1f1f;
+    --sidebar-text-light: #333;
+    --sidebar-text-dark: #f1f1f1;
+    --new-chat-bg: #e6eaf1;
+    --new-chat-bg-hover: #d9dfe8;
+    --recent-entry-bg-hover: #e2e6eb;
+    --switch-bg: #ccc;
+    --switch-bg-checked: #2196F3;
+    --switch-handle: white;
+    --body-bg-light: #ffffff;
+    --body-text-light: #000000;
+    --body-bg-dark: #121212;
+    --body-text-dark: #ffffff;
+  }
+   
+[sidebar-theme ="dark"]{
+
+    --sidebar-bg-light:#1f1f1f ;
+    --sidebar-bg-dark: #1f1f1f;
+    --sidebar-text-light:#f9f9f9;
+    --sidebar-text-dark: #f1f1f1;
+    --new-chat-bg: #1f1f1f;
+    --new-chat-bg-hover: #252a31;
+    --recent-entry-bg-hover: #252a31;
+    --switch-bg: #252a31;
+    --switch-bg-checked: #142f45;
+    --switch-handle: rgb(20, 15, 15);
+    --body-bg-light: #1f1f1f;
+    --body-text-light: #f1f1f1;
+    --body-bg-dark: #121212;
+    --body-text-dark: #ffffff;
+
+
+
+
+}
 
  @keyframes fadeIn{
 0%{opacity:0}

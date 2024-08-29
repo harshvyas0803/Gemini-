@@ -4,16 +4,24 @@ import { assets } from '../../assets/assets';
 import { Context } from '../../context/Context';
 
 const Sidebar = () => {
-  const [extended, setExtended] = useState(true);  
-  const { onSent, prevPrompts, setRecentPrompt,newChat } = useContext(Context);
+  const [extended, setExtended] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false); // State for dark mode
+  const { onSent, prevPrompts, setRecentPrompt, newChat } = useContext(Context);
 
+  // Function to load a saved prompt
   const loadPrompt = (prompt) => {
     setRecentPrompt(prompt);
     onSent(prompt);
   };
 
+  // Function to handle theme toggle
+  const handleThemeToggle = () => {
+    setIsDarkMode(prevMode => !prevMode);
+    document.body.classList.toggle('dark', !isDarkMode);
+  };
+
   return (
-    <div className={`sidebar ${extended ? 'expanded' : 'collapsed'}`}>
+    <div className={`sidebar ${extended ? 'expanded' : 'collapsed'} ${isDarkMode ? 'dark' : 'light'}`}>
       <div className="top">
         <img
           onClick={() => setExtended(prev => !prev)}
@@ -21,7 +29,7 @@ const Sidebar = () => {
           src={assets.menu_icon}
           alt="Menu"
         />
-        <div onClick={()=>newChat()}className="new-chat">
+        <div onClick={newChat} className="new-chat">
           <img src={assets.plus_icon} alt="New Chat" />
           {extended && <p>New Chat</p>}
         </div>
@@ -45,18 +53,27 @@ const Sidebar = () => {
 
       <div className="bottom">
         <div className="bottom-item recent-entry">
-          <img src={assets.question_icon} alt="Help" />
-          {extended && <p>Help</p>}
+          <span>Dark Mode</span>
+          <label className="switch">
+            <input 
+              type="checkbox" 
+              onChange={handleThemeToggle}
+              checked={isDarkMode}
+            />
+            <span className="slider round"></span>
+          </label>
+        </div>
+
+        <div className="bottom-item recent-entry">
+          <a href="https://blog.google/technology/ai/google-gemini-ai/" target="_blank" rel="noopener noreferrer">
+            <img src={assets.question_icon} alt="Help" /> 
+            <p>About</p> 
+          </a>
         </div>
 
         <div className="bottom-item recent-entry">
           <img src={assets.history_icon} alt="Activity" />
           {extended && <p>Activity</p>}
-        </div>
-
-        <div className="bottom-item recent-entry">
-          <img src={assets.setting_icon} alt="Settings" />
-          {extended && <p>Settings</p>}
         </div>
       </div>
     </div>
