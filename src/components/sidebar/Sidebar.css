@@ -369,7 +369,7 @@ body.dark .bottom-item:hover {
 }
 @media (max-width: 600px) {
   .sidebar {
-    overflow-x: auto;
+     
     width: 60px; /* Sidebar starts in collapsed state */
   }
 

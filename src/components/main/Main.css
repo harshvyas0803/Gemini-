@@ -175,8 +175,4 @@ width: 150px;
 }
 }
 
-.main{
-    overflow-x: auto; /* Enable horizontal scrolling */
-    white-space: nowrap; /* Prevent wrapping of child elements */
-  
-}
+ 
