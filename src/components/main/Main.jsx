@@ -63,7 +63,7 @@ const Main = () => {
                 <img src={assets.bulb_icon} alt="Bulb Icon" />
               </div>
               <div className="card">
-                <p>Brainstorm team bonding activities</p>
+                <p>Hey user! explore "Dark Mode"</p>
                 <img src={assets.message_icon} alt="Message Icon" />
               </div>
               <div className="card">
