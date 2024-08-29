@@ -47,7 +47,9 @@
 .sidebar img {
   width: 20px;
 }
-
+ .sidebar.collapsed .bottom{
+  display: none;
+ }
 .sidebar .menu {
   display: block;
   margin-bottom: 20px;
