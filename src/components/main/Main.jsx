@@ -7,8 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Bounce } from 'react-toastify';
 
 const Main = () => {
-  function showNotification() {
-    toast('🦄 Wow so easy!', {
+  const {
+    onSent, recentPrompt, showResult, loading, resultData, setInput, input
+  } = useContext(Context);
+  
+  const showNotification = () => {
+    toast('🦄 The feature will be available soon!', {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -18,16 +22,13 @@ const Main = () => {
       theme: "light",
       transition: Bounce,
     });
-  }
+  };
 
-  const {
-    onSent, recentPrompt, showResult, loading, resultData, setInput, input
-  } = useContext(Context);
-
+  
   const handleSubmit = () => {
     if (input.trim()) {
       onSent(input);
-    }
+     }
   };
 
   return (
@@ -46,10 +47,22 @@ const Main = () => {
             </div>
 
             <div className="cards">
-              <div className="card"><p>Suggest beautiful places</p><img src={assets.compass_icon} alt="Compass Icon" /></div>
-              <div className="card"><p>Briefly summarize a concept</p><img src={assets.bulb_icon} alt="Bulb Icon" /></div>
-              <div className="card"><p>Brainstorm team bonding activities</p><img src={assets.message_icon} alt="Message Icon" /></div>
-              <div className="card"><p>Find the error in the following code...</p><img src={assets.code_icon} alt="Code Icon" /></div>
+              <div className="card">
+                <p>Suggest beautiful places</p>
+                <img src={assets.compass_icon} alt="Compass Icon" />
+              </div>
+              <div className="card">
+                <p>Briefly summarize a concept</p>
+                <img src={assets.bulb_icon} alt="Bulb Icon" />
+              </div>
+              <div className="card">
+                <p>Brainstorm team bonding activities</p>
+                <img src={assets.message_icon} alt="Message Icon" />
+              </div>
+              <div className="card">
+                <p>Find the error in the following code...</p>
+                <img src={assets.code_icon} alt="Code Icon" />
+              </div>
             </div>
           </>
         ) : (
@@ -58,10 +71,9 @@ const Main = () => {
               <img src={assets.user_icon} alt="User Icon" />
               <p>{recentPrompt}</p>
             </div>
-            
-            <div className="result-data">
-              <img src={assets.gemini_icon} alt="Gemini Icon" />
 
+            <div className="result-data" aria-live="polite">
+              <img src={assets.gemini_icon} alt="Gemini Icon" />
               {loading ? (
                 <div className='loader'>
                   <hr />
@@ -82,23 +94,24 @@ const Main = () => {
               value={input} 
               type="text" 
               placeholder='Enter Prompt' 
+              aria-label="Enter prompt" 
             />
             <div>
               <img 
                 src={assets.gallery_icon} 
                 alt="Gallery Icon" 
-                onClick={showNotification} 
+                onClick={showNotification}
               />
               <img 
                 src={assets.mic_icon} 
+                onClick={showNotification}
                 alt="Mic Icon" 
-                onClick={showNotification} 
               />
               {input ? (
                 <img 
                   src={assets.send_icon} 
                   alt="Send Icon" 
-                  onClick={handleSubmit}   
+                  onClick={handleSubmit} 
                   style={{ cursor: 'pointer' }} 
                 />
               ) : null}   
